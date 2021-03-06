@@ -15,7 +15,7 @@ export default function Home() {
     setError(undefined);
 
     fetch(GENERATE_API_URL)
-      .then((res) => res.text)
+      .then((res) => res.text())
       .then((result) => setResult(result))
       .catch((e) => {
         setError(e);
