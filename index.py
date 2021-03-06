@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 
+from utils import *
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -17,3 +18,14 @@ def home():
 def generate():
     # generate music with your model & return
     return "Here's a generated music...Enjoy!"
+
+
+@app.route('/generate/sample')
+@cross_origin()
+def generate_sample():
+    try:
+        with open("static/sample.abc", "r") as f:
+            abc_text = f.readlines()
+            return '\n'.join(abc_text)
+    except:
+        return ''
