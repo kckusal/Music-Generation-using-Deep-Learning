@@ -1,11 +1,16 @@
 import Head from "next/head";
 import { useEffect, useState, useCallback, useRef } from "react";
+import { useRouter } from "next/router";
+
 import styles from "../styles/Home.module.css";
 
 const GENERATE_API_URL =
   "https://music-generation-using-deep-learning.vercel.app/generate";
+const SAMPLE_GENERATE_API_URL =
+  "https://music-generation-using-deep-learning.vercel.app/generate/sample";
 
 export default function Home() {
+  const router = useRouter();
   const instrumentRef = useRef();
 
   const [isGenerating, setIsGenerating] = useState(false);
@@ -15,7 +20,10 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    instrumentRef.current = Instrument;
+    if (!["/", "/sample"].includes(router.pathname)) {
+      router.push("/");
+      return;
+    }
   }, []);
 
   const generate = useCallback(() => {
@@ -30,7 +38,7 @@ export default function Home() {
         console.error({ e });
       })
       .finally(() => setIsGenerating(false));
-  }, []);
+  }, [router.pathname]);
 
   const play = useCallback(() => {
     if (!instrumentRef.current) {
@@ -43,9 +51,8 @@ export default function Home() {
       return;
     }
 
-    const inst = new instrumentRef.current();
     setIsPlaying(true);
-    inst.play(result, () => {
+    instrumentRef.current.play(result, () => {
       setIsPlaying(false);
     });
   }, [result, instrumentRef.current]);
