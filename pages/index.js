@@ -12,8 +12,9 @@ export default function Home() {
   const router = useRouter();
   const instrumentRef = useRef();
 
+  const [generateAPI, setGenerateAPI] = useState(GENERATE_API_URL);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [result, setResult] = useState("fjdsfjk");
+  const [result, setResult] = useState("");
   const [error, setError] = useState();
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -23,17 +24,20 @@ export default function Home() {
       router.push("/");
       return;
     }
+
+    window.setGenerateAPI = setGenerateAPI;
   }, []);
 
   useEffect(() => {
     instrumentRef.current = new Instrument();
+    window.instrument = instrumentRef.current;
   }, []);
 
   const generate = useCallback(() => {
     setIsGenerating(true);
     setError(undefined);
 
-    fetch(GENERATE_API_URL)
+    fetch(generateAPI)
       .then((res) => res.text())
       .then((result) => setResult(result))
       .catch((e) => {
@@ -42,7 +46,7 @@ export default function Home() {
         alert("Some error occurred during generation.");
       })
       .finally(() => setIsGenerating(false));
-  }, [router.pathname]);
+  }, [router.pathname, generateAPI]);
 
   const play = useCallback(() => {
     if (!instrumentRef.current) {
@@ -72,6 +76,16 @@ export default function Home() {
       <main className={styles.main}>
         <h2>About:</h2>
         <p>This page lets you try music generated with Deep Learning.</p>
+
+        <p>
+          <label>Generate API URL: </label>
+          <input
+            type="text"
+            value={generateAPI}
+            onChange={(e) => setGenerateAPI(e.target.value)}
+            style={{ width: "100%" }}
+          />
+        </p>
 
         <p>
           <button onClick={generate}>Generate New</button>
