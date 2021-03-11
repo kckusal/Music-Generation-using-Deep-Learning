@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
   const instrumentRef = useRef();
 
-  const [generateAPI, setGenerateAPI] = useState(GENERATE_API_URL);
+  const [generateAPI, setGenerateAPI] = useState(SAMPLE_GENERATE_API_URL);
   const [isGenerating, setIsGenerating] = useState(false);
   const [result, setResult] = useState("");
   const [error, setError] = useState();
