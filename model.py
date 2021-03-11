@@ -104,9 +104,6 @@ def vectorize_string(string):
     return vectorized_output
 
 
-vectorized_songs = vectorize_string(songs_joined)
-
-
 def get_batch(vectorized_songs, seq_length, batch_size):
     # the length of the vectorized songs string
     n = vectorized_songs.shape[0] - 1
@@ -126,7 +123,7 @@ def get_batch(vectorized_songs, seq_length, batch_size):
     return x_batch, y_batch
 
 
-x_batch, y_batch = get_batch(vectorized_songs, seq_length=5, batch_size=1)
+# x_batch, y_batch = get_batch(vectorized_songs, seq_length=5, batch_size=1)
 
 
 def LSTM(rnn_units):
@@ -166,7 +163,7 @@ def build_model(vocab_size, embedding_dim, rnn_units, batch_size):
 # model.summary()
 
 
-x, y = get_batch(vectorized_songs, seq_length=100, batch_size=32)
+# x, y = get_batch(vectorized_songs, seq_length=100, batch_size=32)
 #pred = model(x)
 
 
