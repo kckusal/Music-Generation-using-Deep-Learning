@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 
 const GENERATE_API_URL =
-  "https://music-generation-using-deep-learning.vercel.app/generate";
+  "https://167a8bc7e1dc.ngrok.io/generate";
 const SAMPLE_GENERATE_API_URL =
   "https://music-generation-using-deep-learning.vercel.app/generate/sample";
 
