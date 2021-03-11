@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 
+from model import generate_text
 from utils import *
 
 app = Flask(__name__)
@@ -17,7 +18,7 @@ def home():
 @cross_origin()
 def generate():
     # generate music with your model & return
-    return "Here's a generated music...Enjoy!"
+    return generate_text()
 
 
 @app.route('/generate/sample')

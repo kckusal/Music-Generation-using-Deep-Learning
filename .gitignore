@@ -1,2 +1,4 @@
 __pycache__
 .vercel
+node_modules/
+.next/
