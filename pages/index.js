@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 
 import styles from "../styles/Home.module.css";
 
-const GENERATE_API_URL =
-  "https://167a8bc7e1dc.ngrok.io/generate";
+const GENERATE_API_URL = "https://167a8bc7e1dc.ngrok.io/generate";
 const SAMPLE_GENERATE_API_URL =
   "https://music-generation-using-deep-learning.vercel.app/generate/sample";
 
@@ -14,7 +13,7 @@ export default function Home() {
   const instrumentRef = useRef();
 
   const [isGenerating, setIsGenerating] = useState(false);
-  const [result, setResult] = useState();
+  const [result, setResult] = useState("fjdsfjk");
   const [error, setError] = useState();
 
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,6 +23,10 @@ export default function Home() {
       router.push("/");
       return;
     }
+  }, []);
+
+  useEffect(() => {
+    instrumentRef.current = new Instrument();
   }, []);
 
   const generate = useCallback(() => {
@@ -36,6 +39,7 @@ export default function Home() {
       .catch((e) => {
         setError(e);
         console.error({ e });
+        alert("Some error occurred during generation.");
       })
       .finally(() => setIsGenerating(false));
   }, [router.pathname]);
@@ -82,14 +86,14 @@ export default function Home() {
             ? "The following ABC text was generated:"
             : "You have NOT generated any music yet."}
         </p>
-        <pre>
+        <div>
           {!isGenerating &&
             (error ? (
               <em>Something went wrong! Try again.</em>
             ) : (
               <code>{result}</code>
             ))}
-        </pre>
+        </div>
 
         <p>
           &nbsp;
