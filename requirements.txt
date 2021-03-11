@@ -1,4 +1,4 @@
 flask==1.0.2
 flask-cors==3.0.10
 tensorflow==2.4.1
-mitdeeplearning==0.2.0
+# mitdeeplearning==0.2.0

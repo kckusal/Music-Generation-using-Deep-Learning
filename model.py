@@ -1,22 +1,96 @@
 
 import tensorflow as tf
-import mitdeeplearning as mdl
 
 # Import all remaining packages
 import numpy as np
 import os
 import time
-import functools
-from tqdm import tqdm
 
-# Download the dataset
-songs = mdl.lab1.load_training_data()
-
-# Join our list of song strings into a single string containing all songs
-songs_joined = "\n\n".join(songs)
 
 # Find all unique characters in the joined string
-vocab = sorted(set(songs_joined))
+vocab = ['\n',
+         ' ',
+         '!',
+         '"',
+         '#',
+         "'",
+         '(',
+         ')',
+         ',',
+         '-',
+         '.',
+         '/',
+         '0',
+         '1',
+         '2',
+         '3',
+         '4',
+         '5',
+         '6',
+         '7',
+         '8',
+         '9',
+         ':',
+         '<',
+         '=',
+         '>',
+         'A',
+         'B',
+         'C',
+         'D',
+         'E',
+         'F',
+         'G',
+         'H',
+         'I',
+         'J',
+         'K',
+         'L',
+         'M',
+         'N',
+         'O',
+         'P',
+         'Q',
+         'R',
+         'S',
+         'T',
+         'U',
+         'V',
+         'W',
+         'X',
+         'Y',
+         'Z',
+         '[',
+         ']',
+         '^',
+         '_',
+         'a',
+         'b',
+         'c',
+         'd',
+         'e',
+         'f',
+         'g',
+         'h',
+         'i',
+         'j',
+         'k',
+         'l',
+         'm',
+         'n',
+         'o',
+         'p',
+         'q',
+         'r',
+         's',
+         't',
+         'u',
+         'v',
+         'w',
+         'x',
+         'y',
+         'z',
+         '|']
 print("There are", len(vocab), "unique characters in the dataset")
 
 
@@ -222,5 +296,3 @@ def generate_text(start_string="X", generation_length=200):
 
 
 generated_text = generate_text(start_string="X", generation_length=1000)
-
-generated_songs = mdl.lab1.extract_song_snippet(generated_text)
