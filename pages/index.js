@@ -74,6 +74,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <h2>Music Generation with Deep Learning</h2>
+    
         <h2>About:</h2>
         <p>This page lets you try music generated with Deep Learning.</p>
 
