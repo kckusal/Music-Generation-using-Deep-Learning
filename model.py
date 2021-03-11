@@ -6,6 +6,8 @@ import numpy as np
 import os
 import time
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 # Find all unique characters in the joined string
 vocab = ['\n',
